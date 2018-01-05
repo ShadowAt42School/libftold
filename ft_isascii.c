@@ -6,7 +6,7 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 01:31:59 by maghayev          #+#    #+#             */
-/*   Updated: 2017/12/07 01:44:33 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/01/03 15:15:24 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 int		ft_isascii(int c)
 {
-	return (IS_PRINT(c) && IS_NONPRINT(c));
+	return (IS_PRINT(c) || IS_NONPRINT(c));
 }

@@ -6,7 +6,7 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 23:04:56 by maghayev          #+#    #+#             */
-/*   Updated: 2017/12/02 23:35:44 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/01/05 00:26:38 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	ft_putnbr(int n)
 	char	interim;
 
 	interim = 0;
-	if (n == -2147483648)
-		write(1, "-2147483648", 11);
+	if (n == INT_MIN)
+		write(1, INT_MIN_STR, 11);
 	else
 	{
 		if (n < 0)

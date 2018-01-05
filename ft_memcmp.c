@@ -6,7 +6,7 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/03 23:50:29 by maghayev          #+#    #+#             */
-/*   Updated: 2017/12/04 01:12:57 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/01/02 23:53:03 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static int		calc_difference(const void *str1, const void *str2, size_t n)
 			return (*str1_tc - *str2_tc);
 		else if (*str1_tc < *str2_tc)
 			return (*str1_tc - *str2_tc);
+		str1_tc++;
+		str2_tc++;
 		n--;
 	}
 	return (0);
@@ -34,19 +36,27 @@ int				ft_memcmp(const void *str1, const void *str2, size_t n)
 {
 	while (n)
 	{
-		if (n >= sizeof(long int))
+		if (n >= LIS)
 		{
-			if (((long int*)str1) != ((long int*)str2))
+			if ((*(long int*)str1) != (*(long int*)str2))
 				return (calc_difference(LINTP(str1), LINTP(str2), LIS));
+			str1 += (n -= LIS) ? LIS : LIS;
+			str2 += LIS;
 		}
-		else if (n >= sizeof(int))
+		else if (n >= IS)
 		{
-			if (((long int*)str1) != ((long int*)str2))
-				return (calc_difference(LINTP(str1), LINTP(str2), IS));
+			if (*(int*)(str1) != *(int*)(str2))
+				return (calc_difference(INTP(str1), INTP(str2), IS));
+			str1 += (n -= IS) ? IS : IS;
+			str2 += IS;
 		}
 		else
-			return (*(int*)str1 - *(int*)str2);
-		n--;
+		{
+			if ((*(char*)str1) != (*(char*)str2))
+				return (calc_difference(CHRP(str1), CHRP(str2), CS));
+			str1 += (n -= CS) ? CS : CS;
+			str2 += CS;
+		}
 	}
 	return (0);
 }

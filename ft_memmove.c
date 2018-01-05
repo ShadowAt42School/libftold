@@ -6,7 +6,7 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/03 20:41:51 by maghayev          #+#    #+#             */
-/*   Updated: 2017/12/03 21:13:43 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/01/02 23:06:06 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,21 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	unsigned char *destc;
 	unsigned char *srcc;
 
-	destc = (unsigned char*)dest;
-	srcc = (unsigned char*)src;
-	if ((unsigned char*)dest == (unsigned char*)src)
-		return (void*)(dest);
-	if (destc < srcc)
-		while (n--)
-			*(destc++) = *(srcc++);
-	if (destc > srcc)
+	srcc = (unsigned char *)src;
+	destc = (unsigned char *)dest;
+	if (destc == srcc)
+		return (dest);
+	if (srcc < destc)
 	{
-		dest += n - 1;
+		destc += n - 1;
 		srcc += n - 1;
 		while (n--)
-			*(destc--) = *(srcc--);
+			*destc-- = *srcc--;
 	}
-	return (void*)(destc);
+	else
+	{
+		while (n--)
+			*destc++ = *srcc++;
+	}
+	return (dest);
 }

@@ -6,7 +6,7 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 00:55:11 by maghayev          #+#    #+#             */
-/*   Updated: 2017/12/06 01:02:09 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/01/03 19:20:32 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,7 @@ char	*ft_strchr(const char *str, int c)
 	while (*str)
 		if (*str++ == c)
 			return (char*)(--str);
+	if (*str == c)
+		return ((char*)str);
 	return (NULL);
 }

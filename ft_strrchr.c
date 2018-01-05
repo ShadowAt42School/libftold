@@ -6,7 +6,7 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 01:04:40 by maghayev          #+#    #+#             */
-/*   Updated: 2017/12/06 01:10:54 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/01/03 19:30:37 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,20 @@
 
 char	*ft_strrchr(const char *str, int c)
 {
-	char	*str_move;
+	char	*result;
+	char	*result_tmp;
 
-	str_move = (char*)str;
-	while (*str)
+	result = NULL;
+	while (*str != '\0')
 	{
-		if (*str == c)
-			str_move = (char*)str;
-		str++;
+		result_tmp = ft_strchr(str, c);
+		if (!result_tmp)
+			break ;
+		else
+			result = result_tmp;
+		if (*result == '\0')
+			break ;
+		str = result_tmp + 1;
 	}
-	return (str_move ? str_move : NULL);
+	return (result);
 }

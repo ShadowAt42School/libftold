@@ -6,7 +6,7 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 20:18:02 by maghayev          #+#    #+#             */
-/*   Updated: 2017/12/07 01:46:47 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/01/05 00:21:51 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,17 @@
 typedef	unsigned char	t_byte;
 
 /*
+** Pre-Def values
+** Macroses Part 0
+*/
+# define INT_MIN -2147483648
+# define INT_MAX 2147483647
+# define INT_MIN_STR "-2147483648"
+# define INT_MAX_STR "2147483647"
+# define TRUE 1
+# define FALSE 0
+
+/*
 ** Casts
 ** Macroses Part 1
 */
@@ -29,8 +40,6 @@ typedef	unsigned char	t_byte;
 # define INTP(x) ((int*)x)
 # define SINTP(x) ((short int*)x)
 # define CHRP(x) ((char*)x)
-# define TRUE 1
-# define FALSE 0
 
 /*
 ** Sizes
@@ -48,6 +57,8 @@ typedef	unsigned char	t_byte;
 ** Macroses
 */
 # define ABS(x) (x < 0 ? -x : x)
+# define SPACES(x) (x == '\v' || x == '\r' || x == '\f' || SPACES2(x))
+# define SPACES2(x) (x == '\t' || x == ' ' || x == '\n')
 
 /*
 ** C Type Checks
@@ -58,8 +69,8 @@ typedef	unsigned char	t_byte;
 # define IS_LOWER(x) (x >= 97 && x <= 122 ? TRUE : FALSE)
 # define IS_ALPHA(x) ((IS_UPPER(x) || IS_LOWER(x)) ? TRUE : FALSE)
 # define IS_ALNUM(x) (IS_ALPHA(x) || IS_DIGIT(x) ? TRUE : FALSE)
-# define IS_PRINT(x) (x >= 32 && x <= 255 ? TRUE : FALSE)
-# define IS_NONPRINT(x) (x >= 0 && x <= 31 ? TRUE : FALSE)
+# define IS_PRINT(x) (x >= 32 && x <= 126 ? TRUE : FALSE)
+# define IS_NONPRINT(x) (x >= 0 && x <= 31 || x == 127 ? TRUE : FALSE)
 
 /*
 **	Strings
@@ -75,6 +86,33 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size);
 char	*ft_strchr(const char *str, int c);
 char	*ft_strrchr(const char *str, int c);
 char	*ft_strstr(const char *haystack, const char *needle);
+char	*ft_strnstr(const char *haystack, const char *needle, size_t n);
+int		ft_strcmp(const char *str1, const char *str2);
+int		ft_strncmp(const char *str1, const char *str2, size_t n);
+char	*ft_strnew(size_t size);
+void	ft_strdel(char **as);
+void	ft_strclr(char *s);
+void	ft_striter(char *s, void (*f)(char *));
+void	ft_striteri(char *s, void (*f)(unsigned int, char *));
+char	*ft_strmap(char const *s, char (*f)(char));
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+int		ft_strequ(char const *s1, char const *s2);
+int		ft_strnequ(char const *s1, char const *s2, size_t n);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strtrim(char const *s);
+char	**ft_strsplit(char const *s, char c);
+int		ft_strwordsdelim(const char *str, char delim);
+int		ft_strlendelim(const char *str, char delim);
+char	*ft_strdupdelim(const char *s1, char delim);
+char	*ft_strtrimdelim(char const *s, char delim);
+
+/*
+** Convertions
+*/
+int		ft_toupper(int c);
+int		ft_tolower(int c);
+int		ft_atoi(const char *str);
+char	*ft_itoa(int n);
 
 /*
 **	System Writes
@@ -84,7 +122,11 @@ void	ft_putstr(char const *s);
 void	ft_putnbr(int n);
 void	ft_print_byte(t_byte byte);
 void	ft_object_bit_print(size_t const size, void const *const ptr);
-
+void	ft_putendl(char const *s);
+void	ft_putchar_fd(char c, int fd);
+void	ft_putstr_fd(char const *s, int fd);
+void	ft_putendl_fd(char const *s, int fd);
+void	ft_putnbr_fd(int n, int fd);
 /*
 **	Memmory
 */
@@ -95,6 +137,8 @@ void	*ft_memccpy(void *s1, const void *s2, int c, size_t n);
 void	*ft_memchr(const void *str, int c, size_t n);
 void	*ft_memmove(void *dest, const void *src, size_t n);
 int		ft_memcmp(const void *str1, const void *str2, size_t n);
+void	*ft_memalloc(size_t size);
+void	ft_memdel(void **ap);
 
 /*
 **	C Type Checks
