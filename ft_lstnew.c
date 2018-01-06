@@ -6,7 +6,7 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 16:21:18 by maghayev          #+#    #+#             */
-/*   Updated: 2018/01/05 16:44:07 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/01/05 22:59:11 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,12 @@ t_list	*ft_lstnew(void const *content, size_t content_size)
 	if (!new_node)
 		return (NULL);
 	if (!content)
+	{
+		new_node->content = NULL;
+		new_node->content_size = 0;
+		new_node->next = NULL;
 		return (new_node);
+	}
 	new_node->content = (void*)ft_memalloc(sizeof(void*));
 	if (!new_node->content)
 		return (NULL);
