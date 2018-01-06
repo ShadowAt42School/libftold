@@ -6,7 +6,7 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 18:24:03 by maghayev          #+#    #+#             */
-/*   Updated: 2018/01/05 18:38:06 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/01/05 22:20:47 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,14 @@
 
 void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
 {
-	t_list	*lst_cur;
-	t_list	*next;
+	t_list	*current;
 
 	if (!lst || !f)
 		return ;
-	lst_cur = lst;
-	next = lst_cur->next;
-	while (lst_cur->next)
+	current = lst;
+	while (current)
 	{
-		f(lst_cur);
-		lst_cur = next;
-		next = lst_cur->next;
+		f(current);
+		current = current->next;
 	}
-	f(lst_cur);
 }

@@ -6,14 +6,15 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 17:05:17 by maghayev          #+#    #+#             */
-/*   Updated: 2018/01/05 18:13:06 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/01/05 22:18:15 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd(t_list **alst, t_list *new_lst)
+void	ft_lstadd(t_list **alst, t_list *new)
 {
-	new_lst->next = *alst;
-	*alst = new_lst;
+	if (*alst)
+		new->next = *alst;
+	*alst = new;
 }
