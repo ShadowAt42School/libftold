@@ -6,7 +6,7 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 21:01:45 by maghayev          #+#    #+#             */
-/*   Updated: 2018/01/05 15:09:22 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/01/05 16:11:10 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,10 @@ char			**ft_strsplit(char const *s, char c)
 
 	words = 0;
 	if (!s)
-		return (NULL);
+		return ((char**)ft_memalloc(sizeof(char*)));
 	s_trimed = ft_strtrimdelim(s, c);
+	if (!s_trimed)
+		return (NULL);
 	if (!*s_trimed)
 		return (ft_strsplit_eng(s_trimed, 0, c));
 	words = ft_strwordsdelim(s_trimed, c);

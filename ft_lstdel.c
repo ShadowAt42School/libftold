@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libt.c                                             :+:      :+:    :+:   */
+/*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/05 14:31:50 by maghayev          #+#    #+#             */
-/*   Updated: 2018/01/05 14:59:50 by maghayev         ###   ########.fr       */
+/*   Created: 2018/01/05 18:18:28 by maghayev          #+#    #+#             */
+/*   Updated: 2018/01/05 18:36:22 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
-#include <stdio.h>
-#include <string.h>
+#include "libft.h"
 
-int		main(void)
+void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 {
-	ft_memccpy(NULL, NULL, '\0', 100);
+	t_list	*lst_cur;
+	t_list	*next;
 
-	return (0);
+	lst_cur = *alst;
+	next = lst_cur->next;
+	while (lst_cur->next)
+	{
+		ft_lstdelone(&lst_cur, del);
+		lst_cur = next;
+		next = lst_cur->next;
+	}
+	ft_lstdelone(&lst_cur, del);
+	*alst = NULL;
 }
