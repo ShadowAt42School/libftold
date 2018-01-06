@@ -6,7 +6,7 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 18:18:28 by maghayev          #+#    #+#             */
-/*   Updated: 2018/01/05 23:12:33 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/01/05 23:19:13 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 	t_list	*next;
 	t_list	*current;
 
+	if (!alst || !del)
+		return ;
 	current = *alst;
 	while (current)
 	{
