@@ -6,11 +6,13 @@
 #    By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/01 21:51:41 by maghayev          #+#    #+#              #
-#    Updated: 2018/01/05 21:12:03 by maghayev         ###   ########.fr        #
+#    Updated: 2018/01/05 22:32:27 by maghayev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = libft.a
-GCCW = gcc -Wall -Wextra -Werror -g
+CC = gcc
+CLFAGS = -Wall -Wextra -Werror
+DEPS = libft.h
 SRC  = ft_bzero.c  ft_memcpy.c ft_memset.c ft_memccpy.c ft_memchr.c \
 		ft_memmove.c ft_memcmp.c ft_memalloc.c ft_memdel.c \
 		\
@@ -34,19 +36,20 @@ SRC  = ft_bzero.c  ft_memcpy.c ft_memset.c ft_memccpy.c ft_memchr.c \
 
 OBJECT = $(SRC:.c=.o)
 
+%.o: %.c $(DEPS)
+	$(CC) -c -o $@ $< $(CFLAGS)
+
 all: $(NAME)
 
-$(NAME):
-	@echo "Compiling..."
-	@$(GCCW) -I./ -c $(SRC)
-	@ar rc $(NAME) $(OBJECT)
-	@ranlib $(NAME)
-	@echo "\nFinished!\n"
+$(NAME): $(OBJECT)
+	@ar rc $@ $^
+	@ranlib $@
+	@echo "Finished!"
 
 clean:
-	@echo "Cleanning...\n"
+	@echo "Cleanning..."
 	@/bin/rm -f $(OBJECT)
-	@echo "Cleaned\n"
+	@echo "Cleaned"
 
 fclean: clean
 	@/bin/rm -f $(NAME)
