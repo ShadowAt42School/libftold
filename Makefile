@@ -6,7 +6,7 @@
 #    By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/01 21:51:41 by maghayev          #+#    #+#              #
-#    Updated: 2018/01/05 22:55:05 by maghayev         ###   ########.fr        #
+#    Updated: 2018/01/05 23:04:13 by maghayev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = libft.a
@@ -31,7 +31,7 @@ SRC  = ft_bzero.c  ft_memcpy.c ft_memset.c ft_memccpy.c ft_memchr.c \
 		ft_isdigit.c ft_isalpha.c ft_isascii.c ft_isprint.c ft_isalnum.c \
 		ft_toupper.c ft_tolower.c ft_atoi.c ft_itoa.c \
 		\
-		ft_lstnew.c
+		ft_lstnew.c ft_lstadd.c
 
 OBJECT = $(SRC:.c=.o)
 
