@@ -6,10 +6,13 @@
 #    By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/01 21:51:41 by maghayev          #+#    #+#              #
-#    Updated: 2018/01/05 23:10:45 by maghayev         ###   ########.fr        #
+#    Updated: 2018/01/11 17:59:20 by maghayev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = libft.a
+PURPLE = "\033[35m\c"
+RED = "\033[31m\c"
+NC="\033[0m\c"
 CC = gcc
 CLFAGS = -Wall -Wextra -Werror
 DEPS = libft.h
@@ -37,22 +40,27 @@ SRC  = ft_bzero.c  ft_memcpy.c ft_memset.c ft_memccpy.c ft_memchr.c \
 OBJECT = $(SRC:.c=.o)
 
 %.o: %.c $(DEPS)
+	@echo $(PURPLE)
 	$(CC) -c -o $@ $< $(CFLAGS)
+	@echo $(NC)
 
 all: $(NAME)
 
 $(NAME): $(OBJECT)
 	@ar rc $@ $^
 	@ranlib $@
-	@echo "Finished!"
+	@echo "Finished Building LibFT!"
 
 clean:
-	@echo "Cleanning..."
+	@echo $(RED)
+	@echo "*sadly* Cleanning LibFT... Wait... *sniffs*"
 	@/bin/rm -f $(OBJECT)
-	@echo "Cleaned"
+	@echo "Cleaned LibFT! Bye Bye! *without intusiasm*"
+	@echo $(NC)
 
 fclean: clean
 	@/bin/rm -f $(NAME)
+	@echo "LibFT .a has been deleted! *sign*"
 
 re: fclean all
 
