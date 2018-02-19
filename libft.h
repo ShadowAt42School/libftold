@@ -6,7 +6,7 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 20:18:02 by maghayev          #+#    #+#             */
-/*   Updated: 2018/01/05 18:13:30 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/02/05 23:32:31 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,13 @@
 # include <string.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <limits.h>
 
 /*
 ** Type defs
 */
 typedef	unsigned char	t_byte;
+typedef unsigned int	t_bool;
 
 typedef struct	s_list
 {
@@ -31,8 +33,6 @@ typedef struct	s_list
 ** Pre-Def values
 ** Macroses Part 0
 */
-# define INT_MIN -2147483648
-# define INT_MAX 2147483647
 # define INT_MIN_STR "-2147483648"
 # define INT_MAX_STR "2147483647"
 # define TRUE 1
@@ -76,7 +76,7 @@ typedef struct	s_list
 # define IS_ALPHA(x) ((IS_UPPER(x) || IS_LOWER(x)) ? TRUE : FALSE)
 # define IS_ALNUM(x) (IS_ALPHA(x) || IS_DIGIT(x) ? TRUE : FALSE)
 # define IS_PRINT(x) (x >= 32 && x <= 126 ? TRUE : FALSE)
-# define IS_NONPRINT(x) (x >= 0 && x <= 31 || x == 127 ? TRUE : FALSE)
+# define IS_NONPRINT(x) ((x >= 0 && x <= 31) || x == 127 ? TRUE : FALSE)
 
 /*
 **	Strings
@@ -145,6 +145,11 @@ void			*ft_memmove(void *dest, const void *src, size_t n);
 int				ft_memcmp(const void *str1, const void *str2, size_t n);
 void			*ft_memalloc(size_t size);
 void			ft_memdel(void **ap);
+void			*ft_memrealloc(
+							void *content, size_t cur_size, size_t des_size);
+void			*ft_memjoin(void *sh, const void *sn, size_t shl, size_t snh);
+void			*ft_memdup(const void *cont, size_t size);
+void			*ft_memshrink(void *area, void *start, size_t len);
 
 /*
 **	C Type Checks
@@ -163,6 +168,10 @@ void			ft_lstadd(t_list **alst, t_list *new_lst);
 void			ft_lstdelone(t_list **alst, void (*del)(void*, size_t));
 void			ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));
+void			ft_lstpush(t_list **alst, t_list *new_lst);
 t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+t_list			*ft_lstfrem(t_list **head);
+t_list			*ft_lstlrem(t_list *head);
+t_list			*ft_lstanydel(t_list *head, t_list *nd);
 
 #endif

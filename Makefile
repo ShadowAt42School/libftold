@@ -6,7 +6,7 @@
 #    By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/01 21:51:41 by maghayev          #+#    #+#              #
-#    Updated: 2018/01/11 17:59:20 by maghayev         ###   ########.fr        #
+#    Updated: 2018/02/18 20:47:51 by maghayev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = libft.a
@@ -14,10 +14,11 @@ PURPLE = "\033[35m\c"
 RED = "\033[31m\c"
 NC="\033[0m\c"
 CC = gcc
-CLFAGS = -Wall -Wextra -Werror
-DEPS = libft.h
+CFLAGS = -Wall -Wextra -Werror
+DEPS = libft.h get_next_line.h
 SRC  = ft_bzero.c  ft_memcpy.c ft_memset.c ft_memccpy.c ft_memchr.c \
-		ft_memmove.c ft_memcmp.c ft_memalloc.c ft_memdel.c \
+		ft_memmove.c ft_memcmp.c ft_memalloc.c ft_memdel.c ft_memrealloc.c \
+		ft_memjoin.c ft_memdup.c ft_memshrink.c \
 		\
 		ft_putchar.c ft_putstr.c ft_putnbr.c ft_print_byte.c \
 		ft_object_bit_print.c ft_putendl.c ft_putchar_fd.c ft_putstr_fd.c \
@@ -35,13 +36,15 @@ SRC  = ft_bzero.c  ft_memcpy.c ft_memset.c ft_memccpy.c ft_memchr.c \
 		ft_toupper.c ft_tolower.c ft_atoi.c ft_itoa.c \
 		\
 		ft_lstnew.c ft_lstadd.c ft_lstdel.c ft_lstdelone.c ft_lstmap.c \
-		ft_lstiter.c ft_lstaddend.c
+		ft_lstiter.c ft_lstpush.c ft_lstfrem.c ft_lstlrem.c ft_lstanydel.c \
+		\
+		get_next_line.c \
 
 OBJECT = $(SRC:.c=.o)
 
 %.o: %.c $(DEPS)
 	@echo $(PURPLE)
-	$(CC) -c -o $@ $< $(CFLAGS)
+	$(CC) $(CFLAGS) -g -c -o $@ $<
 	@echo $(NC)
 
 all: $(NAME)

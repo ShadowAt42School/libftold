@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd.c                                        :+:      :+:    :+:   */
+/*   ft_memdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/05 17:05:17 by maghayev          #+#    #+#             */
-/*   Updated: 2018/01/11 22:28:56 by maghayev         ###   ########.fr       */
+/*   Created: 2018/01/26 00:05:06 by maghayev          #+#    #+#             */
+/*   Updated: 2018/01/26 00:07:36 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd(t_list **alst, t_list *new)
+void	*ft_memdup(const void *cont, size_t size)
 {
-	if (!new)
-		return ;
-	if (*alst)
-		new->next = *alst;
-	*alst = new;
+	void	*dupped;
+
+	if (size == 0 || !cont)
+		return (NULL);
+	dupped = ft_memalloc(size);
+	if (!dupped)
+		return (NULL);
+	dupped = ft_memcpy(dupped, cont, size);
+	return (dupped);
 }
